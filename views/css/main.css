@@ -1,0 +1,120 @@
+:root{
+  --acento: #F56E8D;
+  --acento2: #B0DDE9;
+  --neutro: #3AABC9;
+  --complementario: #2A87A8;
+  --fondo: #FFFAFB;
+  --texto: #131313;
+  --texto2: #444444;
+}
+body{
+    background-color: var(--fondo);
+    font-family: 'Roboto'!important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+  }
+  .bg-main{
+    background-color: var(--complementario);
+  }
+  .box-content{
+    box-shadow: 0px 4px 30px rgba(170, 170, 170, 0.25);
+    border-radius: 10px;
+    border-style: none;
+  }
+  .box-content-main{
+    background-color: #FFFFFF;
+    color: var(--complementario)!important;
+  }
+  .container-footer{
+    background-color: var(--complementario);
+    color: var(--texto)!important;
+  }
+  .card-login{
+    min-height: 40vw;
+  }
+  .btn-danger-custom{
+    background-color: var(--acento);
+  }
+  .btn-primary-custom{
+    color: white;
+    background-color: var(--neutro);
+    border-radius: 4px;
+  }
+  .form-login{
+    padding-top: 40%;
+  }
+  .input-group-text-custom{
+    background-color: var(--acento2);
+    border: 0;
+  }
+  .input-custom{
+    background: var(--acento2);
+    border-radius: 6px;
+  }
+  .txt-justify{
+    text-align: justify;
+  }
+  .nav-link{
+    color:  var(--complementario);
+  }
+  .titulo-seccion{
+    color: var(--acento);
+  }
+  .azul{
+    color: var(--complementario);
+  }
+  .dropdown-menu{
+    background-color: var(--acento);
+    color: white!important;
+  }
+  .fondo-foto-terapeuta{
+    background-color: #959494;
+    border-radius: 6px 0px 0px 6px;
+  }
+  .fondo-card-terapeuta{
+    background-color: var(--neutro);
+    border-radius: 6px;
+  }
+body.offcanvas-active{
+  overflow:hidden;
+}
+.offcanvas-header{ display:none; }
+.screen-darken{
+  height: 100%; width:0%;
+  z-index: 30;
+  position: fixed; top: 0; right: 0; 
+  opacity:0; visibility:hidden;
+  background-color: rgba(34, 34, 34, 0.6);
+  transition:opacity .2s linear, visibility 0.2s, width 2s ease-in;
+}
+.screen-darken.active{
+  z-index:10; 
+  transition:opacity .3s ease, width 0s;
+  opacity:1;
+  width:100%;
+  visibility:visible;
+}
+/* ============ mobile view ============ */
+@media all and (max-width: 991px) {
+  .offcanvas-header{ display:block; }
+  .mobile-offcanvas{
+    visibility: hidden;
+    transform:translateX(-100%);
+    border-radius:0; 
+    display:block;
+    position: fixed;  top: 0; left:0;
+    height: 100%; width:80%;
+    z-index: 1200; 
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transition: visibility .3s ease-in-out, transform .3s ease-in-out;
+  }
+  .mobile-offcanvas.show{
+    visibility: visible; 	transform: translateX(0);
+  }
+  .mobile-offcanvas .container, .mobile-offcanvas .container-fluid{
+    display: block;
+  }
+}
+/* ============ mobile view .end// ============ */
