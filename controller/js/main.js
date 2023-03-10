@@ -39,59 +39,19 @@ document.addEventListener("DOMContentLoaded", function(){
     close_offcanvas();
   });
 });
-$(document).ready(function(){
-  $('#table_personal').dataTable( {
-    dom: 'Bfrtip',
-    scrollY:450,
-    scrollX:true,
-    lengthMenu:true,
-    buttons: {
-            buttons: [{
-                    extend: 'excel',
-                    text: '<i class="far fa-file-excel"></i> CSV',
-                    className: 'btn bg-success text-white'
-                },{
-                    extend: 'pdf',
-                    orientation: 'landscape',
-                    pageSize: 'LEGAL',
-                    text: '<i class="far fa-file-pdf"></i> PDF',
-                    className: 'btn bg-danger text-white'
-                },{
-                  text:'<i class="far fa-file-excel"></i> CSV',
-                  className: 'btn bg-success text-white',
-                  action: function ( e, dt, node, config ) {
-                    alert( 'Button activated' );
-                  }
-                }
-            ]
-        },
-    language: {
-        "lengthMenu": "Mostrar _MENU_ registros",
-        "zeroRecords": "Cargando...",
-        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "sSearch": "Buscar:",
-        "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Último",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-        },
-        "sProcessing": "Procesando...",
-    },
-    orderCellsTop: true,
-    fixedHeader: true,
-    "orderClasses": false,
-    "ajax": "controller/js/json/list_per.php",
-    deferRender: true,
-      columns: [
-        { data: 'id_terapeuta' },
-        { data: 'area' },
-        { data: 'cargo' },
-        { data: 'n_empleado' },
-        { data: 'email' },
-        { data: 'tel'}
-      ],
-    });
-  });
+function buscarTerapeuta(){
+  var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("a");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("p")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
