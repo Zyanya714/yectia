@@ -21,6 +21,7 @@ body{
     box-shadow: 0px 4px 30px rgba(170, 170, 170, 0.25);
     border-radius: 10px;
     border-style: none;
+    min-height: 70vh;
   }
   .box-content-main{
     background-color: #FFFFFF;
@@ -31,7 +32,7 @@ body{
     color: var(--texto)!important;
   }
   .card-login{
-    min-height: 40vw;
+    min-height: 70vh;
   }
   .btn-danger-custom{
     background-color: var(--acento);
@@ -69,12 +70,18 @@ body{
     color: white!important;
   }
   .fondo-foto-terapeuta{
-    background-color: #959494;
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 6px 0px 0px 6px;
   }
   .fondo-card-terapeuta{
-    background-color: var(--neutro);
     border-radius: 6px;
+  }
+  .texto-card-terapeuta{
+    text-decoration: none!important;
+    color: var(--complementario);
   }
 body.offcanvas-active{
   overflow:hidden;

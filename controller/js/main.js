@@ -40,15 +40,17 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 });
 function buscarTerapeuta(){
-  var input, filter, ul, li, a, i, txtValue;
+  var input, filter, ul, li, a, i, txtValue, txtValue2;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
     ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("div");
+    li = ul.getElementsByClassName("show");
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("p")[0];
+        esp = li[i].getElementsByClassName("nombre-terapeuta")[0];
         txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        txtValue2 = esp.textContent || esp.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
         } else {
             li[i].style.display = "none";
