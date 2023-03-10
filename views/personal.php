@@ -17,36 +17,42 @@
                     <input type="text" id="myInput" onkeyup="buscarTerapeuta()" placeholder="Buscar por nombre.." title="Escribe un nombre">
                   </div>
                 </div>
-                <div class="container px-4">
-                  <div class="row" id="myUL">
+                <div class="container px-4" id="myUL">
 
-                    <div class="col-12 col-sm-6 fondo-card-terapeuta">
-                      <div class="row">
-                        <div class="col-2 fondo-foto-terapeuta">
-                          <i class="fa fa-x2 fa-user-md"></i>
-                        </div>
-                        <div class="col-10">
-                          <a href="#">
-                            <p class="mt-2 mb-0">Terapeuta 1</p>
-                            <p class="mb-2"><small>Terapia</small></p>
-                          </a>
-                        </div>
+                    <div class="row">
+                      <div class="col-12 col-sm-6">
+                        <a href="#">
+                          <div class="fondo-card-terapeuta">
+                            <div class="row">
+                              <div class="col-2 fondo-foto-terapeuta">
+                                <i class="fa fa-x2 fa-user-md"></i>
+                              </div>
+                              <div class="col-10">
+                                  <p class="mt-2 mb-0">Terapeuta 1</p>
+                                  <p class="mb-2"><small>Terapia</small></p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    
+                      <div class="col-12 col-sm-6">
+                        <a href="#">
+                          <div class="fondo-card-terapeuta">
+                            <div class="row">
+                              <div class="col-2 fondo-foto-terapeuta">
+                                <i class="fa fa-x2 fa-user-md"></i>
+                              </div>
+                              <div class="col-10">
+                                <p class="mt-2 mb-0">Terapeuta 2</p>
+                                <p class="mb-2"><small>Terapia</small></p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
                       </div>
                     </div>
 
-                    <div class="col-12 col-sm-6 fondo-card-terapeuta">
-                      <div class="row">
-                        <div class="col-2 fondo-foto-terapeuta">
-                          <i class="fa fa-x2 fa-user-md"></i>
-                        </div>
-                        <div class="col-10">
-                          <p class="mt-2 mb-0">Terapeuta 1</p>
-                          <p class="mb-2"><small>Terapia</small></p>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
                 </div>
               </div>
             </div>

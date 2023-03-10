@@ -44,7 +44,7 @@ function buscarTerapeuta(){
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
     ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("a");
+    li = ul.getElementsByTagName("div");
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("p")[0];
         txtValue = a.textContent || a.innerText;
