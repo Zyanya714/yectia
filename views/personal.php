@@ -14,7 +14,7 @@
                     <h3 class="titulo-seccion">Personal</h3>
                   </div>
                   <div class="col-12 col-sm-4">
-                    <input type="text" id="myInput" onkeyup="buscarTerapeuta()" placeholder="Buscar por nombre.." title="Escribe un nombre">
+                    <input class="form-control input-busqueda" type="text" id="myInput" onkeyup="buscarTerapeuta()" placeholder="Búsqueda" title="Búsqueda">
                   </div>
                 </div>
                 <div class="container px-4" id="myUL">
@@ -78,7 +78,13 @@
                         </a>
                       </div>
                     </div>
-
+                </div>
+                <div class="container">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#modalAgregar">
+                      <i class="fa fa-plus"></i> Agregar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -87,4 +93,59 @@
       </div>
     </div>
   </div>
+  <!-- Modal Agregar -->
+<div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalAgregarLabel">Nuevo terapeuta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-sm-8">
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="nombre_terapeuta">Nombre</label>
+                    <input type="text" id="nombre_terapeuta" name="nombre_tema" placeholder="Nombre" class="form-control input-custom" required/>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="numero_terapeuta">Núm de empleado</label>
+                    <input type="text" id="numero_terapeuta" name="num_tera" placeholder="Núm de empleado" class="form-control input-custom" required/>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="tipo_tera">Terapia</label>
+                    <select class="form-select input-custom" id="tipo_tera" name="tipo_tera" required>
+                      <option hidden>Terapia</option>
+                      <option>Terapia Física</option>
+                      <option>Terapia Ocupacional</option>
+                      <option>Terapia de lenguaje</option>
+                      <option>Deglución</option>
+                      <option>Neuropsicología</option>
+                    </select>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="telefono_tera">Teléfono</label>
+                    <input type="text" id="telefono_tera" name="telefono_tera" placeholder="Teléfono" class="form-control input-custom" required/>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="correo_tera">Correo electrónico</label>
+                    <input type="text" id="correo_tera" name="correo_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
+                </div>
+              </div>
+              <div class="col-12 col-sm-4">
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
   <?php require_once("layout/footer.php"); ?>
