@@ -98,53 +98,74 @@
   <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="modalAgregarLabel">Nuevo terapeuta</h1>
+        <h1 class="modal-title titulo-seccion fs-5" id="modalAgregarLabel">Nuevo terapeuta</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form method="POST">
+      <form method="POST" action="controller/crud/ingresaPersonal.php">
+        <div class="modal-body">
           <div class="container">
             <div class="row">
               <div class="col-12 col-sm-8">
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="nombre_terapeuta">Nombre</label>
-                    <input type="text" id="nombre_terapeuta" name="nombre_tema" placeholder="Nombre" class="form-control input-custom" required/>
-                </div>
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="numero_terapeuta">Núm de empleado</label>
-                    <input type="text" id="numero_terapeuta" name="num_tera" placeholder="Núm de empleado" class="form-control input-custom" required/>
-                </div>
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="tipo_tera">Terapia</label>
-                    <select class="form-select input-custom" id="tipo_tera" name="tipo_tera" required>
-                      <option hidden>Terapia</option>
-                      <option>Terapia Física</option>
-                      <option>Terapia Ocupacional</option>
-                      <option>Terapia de lenguaje</option>
-                      <option>Deglución</option>
-                      <option>Neuropsicología</option>
-                    </select>
-                </div>
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="telefono_tera">Teléfono</label>
-                    <input type="text" id="telefono_tera" name="telefono_tera" placeholder="Teléfono" class="form-control input-custom" required/>
-                </div>
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="correo_tera">Correo electrónico</label>
-                    <input type="text" id="correo_tera" name="correo_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
+                <div class="row">
+                  <div class="col-12 col-sm-12 form-outline mb-4">
+                      <label class="form-label" for="nombre_terapeuta">Nombre</label>
+                      <input type="text" id="nombre_terapeuta" name="nombre_tera" placeholder="Nombre" class="form-control input-custom" required/>
+                  </div>
+                  <div class="col-12 col-sm-12 form-outline mb-4">
+                      <label class="form-label" for="cargo_tera">Cargo</label>
+                      <input type="text" id="cargo_tera" name="cargo_tera" placeholder="Nombre" class="form-control input-custom" required/>
+                  </div>
+                  <div class="col-12 col-sm-6 form-outline mb-4">
+                      <label class="form-label" for="numero_terapeuta">Núm de empleado</label>
+                      <input type="number" pattern="\d*" id="numero_terapeuta" name="num_tera" placeholder="Núm de empleado" class="form-control input-custom" required/>
+                  </div>
+                  <div class="col-12 col-sm-6 form-outline mb-4">
+                      <label class="form-label" for="tipo_tera">Terapia</label>
+                      <select class="form-select input-custom" id="tipo_tera" name="tipo_tera" required>
+                        <option hidden>Terapia</option>
+                        <option>Terapia Física</option>
+                        <option>Terapia Ocupacional</option>
+                        <option>Terapia de lenguaje</option>
+                        <option>Deglución</option>
+                        <option>Neuropsicología</option>
+                      </select>
+                  </div>
+                  <div class="col-12 col-sm-6 form-outline mb-4">
+                      <label class="form-label" for="telefono_tera">Teléfono</label>
+                      <input type="number" pattern="\d*" id="telefono_tera" name="telefono_tera" placeholder="Teléfono" class="form-control input-custom" required/>
+                  </div>
+                  <div class="col-12 col-sm-6 form-outline mb-4">
+                      <label class="form-label" for="correo_tera">Correo electrónico</label>
+                      <input type="text" id="correo_tera" name="correo_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
+                  </div>
+                  <div class="col-12 col-sm-6 form-outline mb-4">
+                      <label class="form-label" for="usu_tera">Usuario</label>
+                      <input type="text" id="usu_tera" name="usu_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
+                  </div>
+                  <div class="col-12 col-sm-6 form-outline mb-4">
+                      <label class="form-label" for="pass_tera">Contraseña</label>
+                      <input type="text" id="pass_tera" name="pass_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-sm-4">
-
+                <h3 class="azul text-center mt-2">Agregar foto</h3>
+                <div class="profile-pic">
+                  <label class="-label" for="file">
+                    <span class="fa fa-plus"></span>
+                  </label>
+                  <input id="file" accept="image/*" capture="camera" type="file" name="foto_tera" onchange="loadFile(event)" required/>
+                  <img src="views/img/fonto_usuario.png" id="output" width="200" />
+                </div>
               </div>
             </div>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Agregar</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary-custom"><i class="fa fa-plus"></i> Agregar</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
