@@ -1,0 +1,16 @@
+<?php
+$pcp_curp=$_POST['pcp_curp'];
+$pcp_nombre=$_POST['pcp_nombre'];
+$pcp_poblacion=$_POST['pcp_poblacion'];
+$pcp_disc=$_POST['pcp_disc'];
+$pcp_esc=$_POST['pcp_esc'];
+$pcp_fnac=$_POST['pcp_fnac'];
+$pcp_sexo=$_POST['pcp_sexo'];
+$pcp_raza=$_POST['pcp_raza'];
+$pcp_talla=$_POST['pcp_talla'];
+$pcp_peso=$_POST['pcp_peso'];
+$pcp_imc=$_POST['pcp_imc'];
+$pcp_estadoR=$_POST['pcp_estadoR'];
+$pcp_municipio=$_POST['pcp_municipio'];
+$pcp_referenciado=$_POST['pcp_referenciado'];
+$=$_POST[''];
