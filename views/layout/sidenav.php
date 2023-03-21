@@ -11,12 +11,12 @@
         </li>
         <li class="nav-item">
         <a class="nav-link px-4 py-1" href="?mdl=<?php echo(base64_encode('personal')); ?>">
-            <span class="nav-link-text <?php if($module=='personal'){echo('titulo-seccion');}else{echo('azul');} ?>">Personal</span>
+            <span class="nav-link-text <?php if($module=='personal' || $module=='perfil_personal'){echo('titulo-seccion');}else{echo('azul');} ?>">Personal</span>
         </a>
         </li>
         <li class="nav-item">
         <a class="nav-link px-4 py-1" href="?mdl=<?php echo(base64_encode('list_pacientes')); ?>">
-            <span class="nav-link-text <?php if($module=='list_pacientes'){echo('titulo-seccion');}else{echo('azul');} ?>">Mis pacientes</span>
+            <span class="nav-link-text <?php if($module=='list_pacientes'){echo('titulo-seccion');}else{echo('azul');} ?>">Pacientes</span>
         </a>
         </li>
         <li class="nav-item">

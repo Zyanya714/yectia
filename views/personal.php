@@ -27,7 +27,7 @@
                         while($var=mysqli_fetch_array($res)){
                         ?>
                           <div class="col-12 col-sm-6 show px-2 py-3">
-                            <a href="#<?php echo($var['id_terapeuta']); ?>" class="texto-card-terapeuta">
+                            <a href="?mdl=<?php echo(base64_encode('perfil_personal')); ?>&id=<?php echo(base64_encode($var['id_terapeuta'])); ?>" class="texto-card-terapeuta">
                               <div class="fondo-card-terapeuta">
                                 <div class="row">
                                   <div class="col-2 fondo-foto-terapeuta" style="background-image: url(<?php echo($var['url_foto']); ?>);">  
