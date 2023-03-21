@@ -61,3 +61,24 @@ var loadFile = function (event) {
   var image = document.getElementById("output");
   image.src = URL.createObjectURL(event.target.files[0]);
 }
+function checkImgPerfil() {
+  if ($("#foto_tera").val() == "") {
+    Swal.fire('Sin foto de perfil','','question');
+    $("#foto_tera").focus();
+  }
+}
+function capitalizeWords(str,id) {
+  var splitStr = str.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+   }
+   joinedStr=splitStr.join(' ');
+   id="#"+id;
+   $(id).val(joinedStr);
+}
+$(document).ready(function(){
+  $('form').on('blur', 'input, textarea', function() {
+    $(this).val((i, value) => value.trim());
+  });
+  $('#telefono_tera').mask('0000000000');
+});
