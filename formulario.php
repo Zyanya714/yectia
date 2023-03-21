@@ -97,8 +97,8 @@
                     <input type="date" id="pcp_fnac" name="pcp_fnac" class="form-control" readonly required/>
                 </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
-                    <label class="form-label" for="pcp_fnac">Edad</label>
-                    <input type="number" id="pcp_fnac" name="pcp_fnac" class="form-control" pattern="\d*" readonly required/>
+                    <label class="form-label" for="pcp_edad">Edad</label>
+                    <input type="number" id="pcp_edad" name="pcp_edad" class="form-control" pattern="\d*" readonly required/>
                 </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
                     <label class="form-label" for="pcp_sexo">Sexo</label>
@@ -203,11 +203,11 @@
                     <label class="containercheckbox">Otra
                         <input type="checkbox" onclick="mostrarOtraHeredo();">
                         <span class="checkmark"></span>
-                        </label>
-                        <div class="form-group" id="panel_pcp_antHeredo10" style="display:none;">
+                    </label>
+                    <div class="form-group" id="panel_pcp_antHeredo10" style="display:none;">
                         <center>Especificar</center>
                         <input name="pcp_antHeredo10" id="pcp_antHeredo10" class="form-control form-control-sm" type="text" maxlength="50">
-                        </div>
+                    </div>
                 </div>
             <!-- [Termina] Antecedentes heredofamiliares -->
 
@@ -237,25 +237,13 @@
                     </label>
                 </div>
                 <div class="col-12 col-sm-3 mb-2">
-                    <label class="containercheckbox">Conocida con Gen BRCA1
-                        <input type="checkbox" name="pcp_antPato5" value="Conocida con Gen BRCA1">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="col-12 col-sm-3 mb-2">
-                    <label class="containercheckbox">Conocida con Gen BRCA2
-                        <input type="checkbox" name="pcp_antPato6" value="Conocida con Gen BRCA2">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="col-12 col-sm-3 mb-2">
                     <label class="containercheckbox">Otra
                         <input type="checkbox" onclick="mostrarOtraPato();">
                         <span class="checkmark"></span>
                     </label>
-                    <div class="form-group" id="panel_pcp_pcp_antPato7" style="display:none;">
+                    <div class="form-group" id="panel_pcp_pcp_antPato5" style="display:none;">
                         <center>Especificar</center>
-                        <input name="pcp_pcp_antPato7" id="pcp_pcp_antPato7" class="form-control form-control-sm" type="text" maxlength="50">
+                        <input name="pcp_pcp_antPato7" id="pcp_pcp_antPato5" class="form-control form-control-sm" type="text" maxlength="50">
                     </div>
                 </div>
             <!-- [Termina] Antecedentes patológicos -->
@@ -416,6 +404,10 @@
                         <option>Tratamiento Paliativo</option>
                     </select>
                 </div>
+                <div class="col-12 col-sm-4 form-outline mb-4" id="pcp_div_dradio" style="display:none;">
+                    <label class="form-label" for="pcp_dradio">Dosis de radiación</label>
+                    <input type="number" id="pcp_dradio" name="pcp_dradio" class="form-control"/>
+                </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
                     <label class="form-label" for="pcp_quimio">Recibió quimioterapia</label>
                     <select class="form-select" id="pcp_quimio" name="pcp_quimio" onchange="desplegarCatalogoQuimio();" required>
@@ -448,15 +440,27 @@
                 </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
                     <label class="form-label" for="pcp_ECOG">ECOG</label>
-                    <input type="text" id="pcp_ECOG" name="pcp_ECOG" class="form-control" required/>
+                    <select class="form-select" id="pcp_ECOG" name="pcp_ECOG" required>
+                        <option hidden>seleccione</option>
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <!-- Laboratorios -->
+                <div class="col-12 col-sm-4 form-outline mb-4">
+                    <label class="form-label" for="pcp_lab1">Fosfatos alcalinos</label>
+                    <input type="text" id="pcp_lab1" name="pcp_lab1" class="form-control" required/>
                 </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
-                    <label class="form-label" for="pcp_lab">Laboratorios</label>
-                    <input type="text" id="pcp_lab" name="pcp_lab" class="form-control" required/>
+                    <label class="form-label" for="pcp_lab2">Testosterona total</label>
+                    <input type="text" id="pcp_lab2" name="pcp_lab2" class="form-control" required/>
                 </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
-                    <label class="form-label" for="pcp_tipoMeta">IRF (riesgo)</label>
-                    <select class="form-select" id="pcp_tipoMeta" name="pcp_tipoMeta" required>
+                    <label class="form-label" for="pcp_IRF">IRF (riesgo)</label>
+                    <select class="form-select" id="pcp_IRF" name="pcp_IRF" required>
                         <option hidden>seleccione</option>
                         <option>Muy bajo</option>
                         <option>Bajo</option>
@@ -566,6 +570,8 @@
         fecha=document.getElementById('pcp_fradio');
         div_tipo=document.getElementById('pcp_div_tiporadio');
         tipo=document.getElementById('pcp_tiporadio');
+        div_dosis=document.getElementById('pcp_div_dradio');
+        dosis=document.getElementById('pcp_dradio');
         if(element=='SI'){
             div_fecha.style.display='';
             div_tipo.style.display='';
@@ -574,8 +580,11 @@
         }else{
             div_fecha.style.display='none';
             div_tipo.style.display='none';
+            div_dosis.style.display='none';
             fecha.required=false;
             fecha.value='';
+            dosis.required=false;
+            dosis.value='';
             tipo.required=false;
             tipo.selectedIndex=0;
         }

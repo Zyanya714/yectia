@@ -2,18 +2,23 @@
 <?php
 include('../config.php');
 include('../conexion.php');
+
+if (isset($_FILES["foto_tera"])) {
+    $nombre_base = basename($_FILES["foto_tera"]["name"]);
+$nombre_final = date("d-m-y"). "-" . $nombre_base; 
+$ruta = "views/img/tera/" . $nombre_final;
+$ruta_completa = "../../views/img/tera/" . $nombre_final;
+$subirarchivo = move_uploaded_file($_FILES["foto_tera"]["tmp_name"], $ruta_completa);
+}else{
+    echo('Sin archivo adjunto');
+}
+
 $nombre_tera=mysqli_real_escape_string($conexion,$_POST['nombre_tera']);
 $num_tera=mysqli_real_escape_string($conexion,$_POST['num_tera']);
 $tipo_tera=mysqli_real_escape_string($conexion,$_POST['tipo_tera']);
 $cargo_tera=mysqli_real_escape_string($conexion,$_POST['cargo_tera']);
 $telefono_tera=mysqli_real_escape_string($conexion,$_POST['telefono_tera']);
 $correo_tera=mysqli_real_escape_string($conexion,$_POST['correo_tera']);
-
-$nombre_base = basename($_FILES["file"]["name"]); 
-$nombre_final = date("d-m-y"). "-" . $nombre_base; 
-$ruta = "views/img/tera/" . $nombre_final; 
-$subirarchivo = move_uploaded_file($_FILES["file"]["tmp_name"], $ruta);
-
 $usu_tera=mysqli_real_escape_string($conexion,$_POST['usu_tera']);
 $pass_tera=mysqli_real_escape_string($conexion,$_POST['pass_tera']);
 mysqli_query($conexion,"START TRANSACTION");
@@ -26,6 +31,6 @@ if($res1 == TRUE && $res2 == TRUE && $subirarchivo == TRUE) {
     echo("<script type='text/javascript'> Swal.fire({icon: 'success',title: 'Terapeuta [$nombre_tera] agregado correctamente',showCancelButton: false,confirmButtonText: `Aceptar`,}).then((result) => {if (result.isConfirmed){document.location.href='../../index.php?mdl=".base64_encode('personal')."';}}) </script>");
 }else{
     mysqli_query($conexion,"ROLLBACK");
-    echo "<script language='javascript'>alert('Error ".$conexion->error."');document.location.href='../../index.php?mdl=".base64_encode('personal')."</script>";
+    echo "<script language='javascript'>alert('Error ".$conexion->error."');document.location.href='../../index.php?mdl=".base64_encode('personal')."'</script>";
 }
 ?>

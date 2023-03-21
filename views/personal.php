@@ -101,7 +101,7 @@
         <h1 class="modal-title titulo-seccion fs-5" id="modalAgregarLabel">Nuevo terapeuta</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="controller/crud/ingresaPersonal.php">
+      <form method="POST" action="controller/crud/ingresaPersonal.php" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="container">
             <div class="row">
@@ -151,10 +151,10 @@
               <div class="col-12 col-sm-4">
                 <h3 class="azul text-center mt-2">Agregar foto</h3>
                 <div class="profile-pic">
-                  <label class="-label" for="file">
+                  <label class="-label" for="foto_tera">
                     <span class="fa fa-plus"></span>
                   </label>
-                  <input id="file" accept="image/*" capture="camera" type="file" name="foto_tera" onchange="loadFile(event)" required/>
+                  <input id="foto_tera" accept="image/*" capture="camera" type="file" name="foto_tera" onchange="loadFile(event)" required/>
                   <img src="views/img/fonto_usuario.png" id="output" width="200" />
                 </div>
               </div>
