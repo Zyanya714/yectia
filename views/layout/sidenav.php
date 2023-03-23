@@ -16,7 +16,7 @@
         </li>
         <li class="nav-item">
         <a class="nav-link px-4 py-1" href="?mdl=<?php echo(base64_encode('list_pacientes')); ?>">
-            <span class="nav-link-text <?php if($module=='list_pacientes'){echo('titulo-seccion');}else{echo('azul');} ?>">Pacientes</span>
+            <span class="nav-link-text <?php if($module=='list_pacientes' || $module=='perfil_paciente'){echo('titulo-seccion');}else{echo('azul');} ?>">Pacientes</span>
         </a>
         </li>
         <li class="nav-item">

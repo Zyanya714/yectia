@@ -39,38 +39,38 @@
                   </div>
                   <div class="col-12 col-sm-12">
                     <div class="table-responsive">
-                        <table class="table table-borderless table-striped table-hover">
-                            <thead>
+                        <table class="table table-borderless table-striped table-hover bg-table-custom">
+                            <thead class="bg-main text-white">
                                 <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Paciente</th>
-                                <th scope="col">Nombre ejercicio</th>
-                                <th scope="col">Tipo ejercicio</th>
-                                <th scope="col">Fecha asignación</th>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Paciente</th>
+                                  <th scope="col">Nombre ejercicio</th>
+                                  <th scope="col">Tipo ejercicio</th>
+                                  <th scope="col">Fecha asignación</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Lorem</td>
-                                <td>Ipsum</td>
-                                <td>Dolor</td>
-                                <td>Sit</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Lorem</td>
-                                <td>Ipsum</td>
-                                <td>Dolor</td>
-                                <td>Sit</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Lorem</td>
-                                <td>Ipsum</td>
-                                <td>Dolor</td>
-                                <td>Sit</td>
-                                </tr>
+                                <?php
+                                $sql="SELECT * FROM ejercicios INNER JOIN terapeutas ON ejercicios.id_terapeuta=terapeutas.id_terapeuta INNER JOIN pacientes ON ejercicios.id_paciente=pacientes.id_paciente 
+                                INNER JOIN usuarios ON usuarios.idUsuario=pacientes.idUsuario INNER JOIN documentos ON documentos.id_adjunto=ejercicios.id_adjunto WHERE terapeutas.id_terapeuta=".$id;
+                                $res=mysqli_query($conexion,$sql);
+                                $n_var=mysqli_num_rows($res);
+                                if ($n_var>0) {
+                                  while ($var=mysqli_fetch_array($res)) {
+                                    ?>
+                                    <tr>
+                                      <td><?php echo($var['id_ejercicio']); ?></td>
+                                      <td><?php echo($var['nombre']); ?></td>
+                                      <td><?php echo($var['nombre_adj']); ?></td>
+                                      <td><?php echo($var['tipo_adj']); ?></td>
+                                      <td><?php $date=new DateTime($var['date']); echo($date->format('Y/m/d - h:m a')); ?></td>
+                                    </tr>
+                                    <?php
+                                  }
+                                }else{
+                                  echo("<tr><td colspan='5' class='text-center'>No ha asignado ejercicios a ningún paciente<td></tr>");
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>

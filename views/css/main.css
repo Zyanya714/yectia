@@ -6,6 +6,7 @@
   --fondo: #FFFAFB;
   --texto: #131313;
   --texto2: #444444;
+  --fondoTabla: #EEEAF5;
 }
 body{
     background-color: var(--fondo);
@@ -80,6 +81,20 @@ body{
     border-radius: 6px;
   }
   .texto-card-terapeuta{
+    text-decoration: none!important;
+    color: var(--complementario);
+  }
+  .fondo-foto-paciente{
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 6px 0px 0px 6px;
+  }
+  .fondo-card-paciente{
+    border-radius: 6px;
+  }
+  .texto-card-paciente{
     text-decoration: none!important;
     color: var(--complementario);
   }
@@ -171,4 +186,10 @@ body.offcanvas-active{
   display: inline-flex;
   padding: 0.2em;
   height: 2em;
+}
+.bg-table-custom{
+  background-color: var(--acento2);
+  border: 1px solid var(--fondoTabla);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 6px;
 }

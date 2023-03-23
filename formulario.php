@@ -1,62 +1,11 @@
 
-<style>
-.containercheckbox {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 18px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.containercheckbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-.containercheckbox:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-.containercheckbox input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-.containercheckbox input:checked ~ .checkmark:after {
-  display: block;
-}
-.containercheckbox .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-</style>
 <form method="POST">
     <div class="container">
         <div class="row">
             <!-- [Inicia] Datos demográficos -->
+            <div  style="background:#066AEA; border-radius:33px;">
+                <h3 class=" text-center font-weight-bolder" style="color:white;">Datos demográficos</h3>
+            </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
                     <label class="form-label" for="pcp_curp">CURP</label>
                     <input type="text" id="pcp_curp" name="pcp_curp" class="form-control" required/>
@@ -142,8 +91,11 @@
                     <label class="form-label" for="pcp_referenciado">Referenciado</label>
                     <input type="text" id="pcp_referenciado" name="pcp_referenciado" class="form-control" readonly required/>
                 </div>
+      
             <!-- [Termina] Datos demográficos -->
-
+            <div  style="background:#066AEA; border-radius:33px;">
+                  <h3 class=" text-center font-weight-bolder" style="color:white;">Antecedentes heredofamiliares</h3>
+            </div>
             <!-- [Inicia] Antecedentes heredofamiliares -->
                 <div class="col-12 col-sm-3 mb-2">
                     <label class="containercheckbox">Cáncer
@@ -212,6 +164,9 @@
             <!-- [Termina] Antecedentes heredofamiliares -->
 
             <!-- [Inicia] Antecedentes patológicos -->
+            <div  style="background:#066AEA; border-radius:33px;">
+                <h3 class=" text-center font-weight-bolder" style="color:white;">Antecedentes patológicos</h3>
+            </div>
                 <div class="col-12 col-sm-3 mb-2">
                     <label class="containercheckbox">Tabaquismo
                         <input type="checkbox" name="pcp_antPato1" value="Tabaquismo">
@@ -243,13 +198,16 @@
                     </label>
                     <div class="form-group" id="panel_pcp_pcp_antPato5" style="display:none;">
                         <center>Especificar</center>
-                        <input name="pcp_pcp_antPato7" id="pcp_pcp_antPato5" class="form-control form-control-sm" type="text" maxlength="50">
+                        <input id="pcp_pcp_antPato5" name="pcp_antPato5" class="form-control form-control-sm" type="text" maxlength="50">
                     </div>
                 </div>
             <!-- [Termina] Antecedentes patológicos -->
 
             <!-- [Inicia] Atención Clínica -->
-                <div class="col-12 col-sm-4 form-outline mb-4">
+            <div style="background:#066AEA; border-radius:33px;">
+                <h3 class=" text-center font-weight-bolder" style="color:white;">Atención Clínica</h3>
+            </div>
+                <div class="col-12 col-sm-4 form-outline mb-4" style="margin-top:10px;">
                     <label class="form-label" for="pcp_fconsulta">Fecha de consulta 1ra vez</label>
                     <input type="date" id="pcp_fconsulta" name="pcp_fconsulta" class="form-control" max="<?php echo(date('Y-m-d')); ?>" required/>
                 </div>
@@ -289,8 +247,10 @@
                         <option>RTUP</option>
                     </select>
                 </div>
+            <div  style="background:white">
+                <h3 class="text-center font-weight-bolder" style="color:#066AEA;">TNM (metastasis)</h3>
+            </div>
                 <div class="col-12">
-                    <h4>TNM (metastasis)</h4>
                     <div class="row">
                         <div class="col-12 col-sm-4 form-outline mb-4">
                             <label class="form-label" for="pcp_TNM_T">Clinical/Pathological (<strong>T</strong>)</label>
@@ -429,6 +389,10 @@
                         <option>Cabazitaxel</option>
                     </select>
                 </div>
+                <div class="col-12 col-sm-4 form-outline mb-4" id="pcp_div_esquema" style="display:none;">
+                    <label class="form-label" for="pcp_esquema">Esquema</label>
+                    <input type="text" id="pcp_esquema" name="pcp_esquema" class="form-control"/>
+                </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
                     <label class="form-label" for="pcp_tipoMeta">Tipo metástasis</label>
                     <select class="form-select" id="pcp_tipoMeta" name="pcp_tipoMeta" required>
@@ -450,6 +414,9 @@
                     </select>
                 </div>
                 <!-- Laboratorios -->
+            <div  style="background:white">
+                <h3 class="text-center font-weight-bolder" style="color:#066AEA;">Laboratorios</h3>
+            </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
                     <label class="form-label" for="pcp_lab1">Fosfatos alcalinos</label>
                     <input type="text" id="pcp_lab1" name="pcp_lab1" class="form-control" required/>
@@ -473,6 +440,9 @@
             <!-- [Termina] Atención Clínica -->
 
             <!-- [Inicia] Patologia (Anatomopatologia) -->
+            <div  style="background:white">
+                <h3 class="text-center font-weight-bolder" style="color:#066AEA;">Patologia (Anatomopatologia)</h3>
+            </div>
                 <div class="col-12 col-sm-4 form-outline mb-4">
                     <label class="form-label" for="pcp_tipoCancer">Tipo de cancer</label>
                     <select class="form-select" id="pcp_tipoCancer" name="pcp_tipoCancer" required>
@@ -497,6 +467,7 @@
             <!-- [Termina] Patologia (Anatomopatologia) -->
         </div>
     </div>
+    <input type="submit" value="enviar">
 </form>
 <script>
     function calculaIMC(){
@@ -518,13 +489,13 @@
         }
     }
     function mostrarOtraPato(){
-        element=document.getElementById('panel_pcp_pcp_antPato7');
+        element=document.getElementById('panel_pcp_pcp_antPato5');
         if (element.style.display=='none') {
         element.style.display = "block";
-        document.getElementById('pcp_pcp_antPato7').required=true;
+        document.getElementById('pcp_pcp_antPato5').required=true;
         }else{
-        document.getElementById('pcp_pcp_antPato7').value='';
-        document.getElementById('pcp_pcp_antPato7').required=false;
+        document.getElementById('pcp_pcp_antPato5').value='';
+        document.getElementById('pcp_pcp_antPato5').required=false;
         element.style.display = "none";
         }
     }
@@ -575,8 +546,10 @@
         if(element=='SI'){
             div_fecha.style.display='';
             div_tipo.style.display='';
+            div_dosis.style.display='';
             fecha.required=true;
             tipo.required=true;
+            dosis.required=true;
         }else{
             div_fecha.style.display='none';
             div_tipo.style.display='none';
@@ -595,18 +568,25 @@
         fecha=document.getElementById('pcp_fquimio');
         div_tipo=document.getElementById('pcp_div_tipoquimio');
         tipo=document.getElementById('pcp_tipoquimio');
+        div_esquema=document.getElementById('pcp_div_esquema');
+        esquema=document.getElementById('pcp_esquema');
         if(element=='SI'){
             div_fecha.style.display='';
             div_tipo.style.display='';
+            div_esquema.style.display='';
             fecha.required=true;
             tipo.required=true;
+            esquema.required=true;
         }else{
             div_fecha.style.display='none';
             div_tipo.style.display='none';
+            div_esquema.style.display='none';
             fecha.required=false;
             fecha.value='';
             tipo.required=false;
             tipo.selectedIndex=0;
+            esquema.required=false;
+            esquema.selectedIndex=0;
         }
     }
 </script>

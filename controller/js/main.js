@@ -57,6 +57,42 @@ function buscarTerapeuta(){
         }
     }
 }
+function buscarMisPacientes(){
+  var input, filter, ul, li, a, i, txtValue, txtValue2;
+    input = document.getElementById("inputBusquedaMisPacientes");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("listadoMisPacientes");
+    li = ul.getElementsByClassName("show");
+    for(i = 0; i < li.length; i++){
+        a = li[i].getElementsByTagName("p")[0];
+        esp = li[i].getElementsByClassName("nombre-mi-paciente")[0];
+        txtValue = a.textContent || a.innerText;
+        txtValue2 = esp.textContent || esp.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+function buscarPaciente(){
+  var input, filter, ul, li, a, i, txtValue, txtValue2;
+    input = document.getElementById("inputBusquedaPacientes");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("listadoPacientes");
+    li = ul.getElementsByClassName("show");
+    for(i = 0; i < li.length; i++){
+        a = li[i].getElementsByTagName("p")[0];
+        esp = li[i].getElementsByClassName("nombre-paciente")[0];
+        txtValue = a.textContent || a.innerText;
+        txtValue2 = esp.textContent || esp.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
 var loadFile = function (event) {
   var image = document.getElementById("output");
   image.src = URL.createObjectURL(event.target.files[0]);
@@ -65,6 +101,12 @@ function checkImgPerfil() {
   if ($("#foto_tera").val() == "") {
     Swal.fire('Sin foto de perfil','','question');
     $("#foto_tera").focus();
+  }
+}
+function checkImgPerfilPas() {
+  if ($("#foto_paciente").val() == "") {
+    Swal.fire('Sin foto de perfil','','question');
+    $("#foto_paciente").focus();
   }
 }
 function capitalizeWords(str,id) {
@@ -81,4 +123,8 @@ $(document).ready(function(){
     $(this).val((i, value) => value.trim());
   });
   $('#telefono_tera').mask('0000000000');
+  $('#telefono_paciente').mask('0000000000');
+  $('#curp_paciente').keyup(function(){
+    $(this).val($(this).val().toUpperCase());
+  }).mask('SSSS000000SSSAAAAA');
 });
