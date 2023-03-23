@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-10">
                                     <p class="mt-2 mb-0"><?php echo($var['nombre']); ?></p>
-                                    <p class="mb-2"><small class="nombre-mi-paciente"><?php echo($var['diagnostico']); ?></small></p>
+                                    <p class="mb-2"><small class="nombre-mi-paciente"><?php echo($var['curp']); ?></small></p>
                                 </div>
                               </div>
                             </div>
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-10">
                                     <p class="mt-2 mb-0"><?php echo($var['nombre']); ?></p>
-                                    <p class="mb-2"><small class="nombre-paciente"><?php echo($var['diagnostico']); ?></small></p>
+                                    <p class="mb-2"><small class="nombre-paciente"><?php echo($var['curp']); ?></small></p>
                                 </div>
                               </div>
                             </div>

@@ -24,7 +24,7 @@ if (isset($_FILES["foto_paciente"])) {
     }else{
         echo('Sin archivo adjunto');
     }
-$sql="INSERT INTO `pacientes`(`idUsuario`, `fecha_nac`, `curp`, `diagnostico`, `url_foto_p`) VALUES ('".$idUsuario."','".$fnac_paciente."','".$curp_paciente."','".$diag_paciente."','".$ruta."');";
+$sql="INSERT INTO `pacientes`(`idUsuario`, `fecha_nac`, `curp`, `diagnostico`, `telefono_p`, `correo_p`, `url_foto_p`) VALUES ('".$idUsuario."','".$fnac_paciente."','".$curp_paciente."','".$diag_paciente."','".$telefono_paciente."','".$correo_paciente."','".$ruta."');";
 $res2=mysqli_query($conexion,$sql);
 if($res1 == TRUE && $res2 == TRUE && $subirarchivo == TRUE) {
     mysqli_query($conexion,"COMMIT");
