@@ -118,6 +118,15 @@ function capitalizeWords(str,id) {
    id="#"+id;
    $(id).val(joinedStr);
 }
+function tituloActivo(x){
+  var active="border-bottom: 4px solid var(--complementario);";
+  for (let i = 1; i < 6; i++) {
+    th_i=document.getElementById("th-ejercicios_"+i);
+    th_i.style="";
+  }
+  th=document.getElementById("th-ejercicios_"+x);
+  th.style=active;
+}
 $(document).ready(function(){
   $('form').on('blur', 'input, textarea', function() {
     $(this).val((i, value) => value.trim());

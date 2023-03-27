@@ -60,6 +60,13 @@ body{
   .nav-link{
     color:  var(--complementario);
   }
+  .titulo-ejercicios{
+    text-decoration: none;
+    color: var(--neutro);
+  }
+  .table-collapse{
+    border-collapse: collapse;
+  }
   .titulo-seccion{
     color: var(--acento);
   }
