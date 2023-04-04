@@ -18,65 +18,34 @@
                   </div>
                 </div>
                 <div class="container px-4" id="myUL">
-
                     <div class="row">
-                      <div class="col-12 col-sm-6 show px-2 py-3">
-                        <a href="#" class="texto-card-terapeuta">
-                          <div class="fondo-card-terapeuta">
-                            <div class="row">
-                              <div class="col-2 fondo-foto-terapeuta" style="background-image: url(https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg);">  
+                      <?php
+                      include('controller/conexion.php');
+                      $sql="SELECT * FROM usuarios INNER JOIN terapeutas ON usuarios.idUsuario=terapeutas.idUsuario";
+                      $res=mysqli_query($conexion,$sql);
+                      if($res==TRUE){
+                        while($var=mysqli_fetch_array($res)){
+                        ?>
+                          <div class="col-12 col-sm-6 show px-2 py-3">
+                            <a href="?mdl=<?php echo(base64_encode('perfil_personal')); ?>&id=<?php echo(base64_encode($var['id_terapeuta'])); ?>" class="texto-card-terapeuta">
+                              <div class="fondo-card-terapeuta">
+                                <div class="row">
+                                  <div class="col-2 fondo-foto-terapeuta" style="background-image: url(<?php echo($var['url_foto']); ?>);">  
+                                  </div>
+                                  <div class="col-10">
+                                      <p class="mt-2 mb-0"><?php echo($var['nombre']); ?></p>
+                                      <p class="mb-2"><small class="nombre-terapeuta"><?php echo($var['area']); ?></small></p>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="col-10">
-                                  <p class="mt-2 mb-0">Terapeuta 1</p>
-                                  <p class="mb-2"><small class="nombre-terapeuta">Terapia especial</small></p>
-                              </div>
-                            </div>
+                            </a>
                           </div>
-                        </a>
-                      </div>
-                    
-                      <div class="col-12 col-sm-6 show px-2 py-3">
-                        <a href="#" class="texto-card-terapeuta">
-                          <div class="fondo-card-terapeuta">
-                            <div class="row">
-                              <div class="col-2 fondo-foto-terapeuta" style="background-image: url(https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg);">  
-                              </div>
-                              <div class="col-10">
-                                <p class="mt-2 mb-0">Terapeuta 2</p>
-                                <p class="mb-2"><small class="nombre-terapeuta">Terapia operacional</small></p>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="col-12 col-sm-6 show px-2 py-3">
-                        <a href="#" class="texto-card-terapeuta">
-                          <div class="fondo-card-terapeuta">
-                            <div class="row">
-                              <div class="col-2 fondo-foto-terapeuta" style="background-image: url(https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg);">  
-                              </div>
-                              <div class="col-10">
-                                <p class="mt-2 mb-0">Terapeuta 3</p>
-                                <p class="mb-2"><small class="nombre-terapeuta">Terapia operacional</small></p>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="col-12 col-sm-6 show px-2 py-3">
-                        <a href="#" class="texto-card-terapeuta">
-                          <div class="fondo-card-terapeuta">
-                            <div class="row">
-                              <div class="col-2 fondo-foto-terapeuta" style="background-image: url(https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg);">  
-                              </div>
-                              <div class="col-10">
-                                <p class="mt-2 mb-0">Terapeuta 4</p>
-                                <p class="mb-2"><small class="nombre-terapeuta">Terapia clínica</small></p>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
+                        <?php
+                        }
+                      }else{
+                        echo("<div class='col-12 col-sm-6 show px-2 py-3'><h3>Sin dato</h3></div>");
+                      }
+                      ?>
                     </div>
                 </div>
                 <div class="container">
@@ -101,7 +70,7 @@
         <h1 class="modal-title titulo-seccion fs-5" id="modalAgregarLabel">Nuevo terapeuta</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="controller/crud/ingresaPersonal.php">
+      <form method="POST" action="controller/crud/ingresaPersonal.php" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="container">
             <div class="row">
@@ -109,20 +78,20 @@
                 <div class="row">
                   <div class="col-12 col-sm-12 form-outline mb-4">
                       <label class="form-label" for="nombre_terapeuta">Nombre</label>
-                      <input type="text" id="nombre_terapeuta" name="nombre_tera" placeholder="Nombre" class="form-control input-custom" required/>
+                      <input type="text" id="nombre_terapeuta" name="nombre_tera" placeholder="Nombre" class="form-control input-custom" onblur="capitalizeWords(this.value,this.id);" required/>
                   </div>
                   <div class="col-12 col-sm-12 form-outline mb-4">
                       <label class="form-label" for="cargo_tera">Cargo</label>
-                      <input type="text" id="cargo_tera" name="cargo_tera" placeholder="Nombre" class="form-control input-custom" required/>
+                      <input type="text" id="cargo_tera" name="cargo_tera" placeholder="Cargo" class="form-control input-custom" required/>
                   </div>
                   <div class="col-12 col-sm-6 form-outline mb-4">
                       <label class="form-label" for="numero_terapeuta">Núm de empleado</label>
-                      <input type="number" pattern="\d*" id="numero_terapeuta" name="num_tera" placeholder="Núm de empleado" class="form-control input-custom" required/>
+                      <input type="number" pattern="\d*" min="1" max="9999" id="numero_terapeuta" name="num_tera" placeholder="Núm de empleado" class="form-control input-custom" required/>
                   </div>
                   <div class="col-12 col-sm-6 form-outline mb-4">
                       <label class="form-label" for="tipo_tera">Terapia</label>
                       <select class="form-select input-custom" id="tipo_tera" name="tipo_tera" required>
-                        <option hidden>Terapia</option>
+                        <option hidden value="">Terapia</option>
                         <option>Terapia Física</option>
                         <option>Terapia Ocupacional</option>
                         <option>Terapia de lenguaje</option>
@@ -132,29 +101,29 @@
                   </div>
                   <div class="col-12 col-sm-6 form-outline mb-4">
                       <label class="form-label" for="telefono_tera">Teléfono</label>
-                      <input type="number" pattern="\d*" id="telefono_tera" name="telefono_tera" placeholder="Teléfono" class="form-control input-custom" required/>
+                      <input type="number" pattern="\d*" min="1" max="9999999999" id="telefono_tera" name="telefono_tera" placeholder="Teléfono" class="form-control input-custom" required/>
                   </div>
                   <div class="col-12 col-sm-6 form-outline mb-4">
                       <label class="form-label" for="correo_tera">Correo electrónico</label>
-                      <input type="text" id="correo_tera" name="correo_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
+                      <input type="email" id="correo_tera" name="correo_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
                   </div>
                   <div class="col-12 col-sm-6 form-outline mb-4">
                       <label class="form-label" for="usu_tera">Usuario</label>
-                      <input type="text" id="usu_tera" name="usu_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
+                      <input type="text" id="usu_tera" name="usu_tera" placeholder="Usuario" class="form-control input-custom" required/>
                   </div>
                   <div class="col-12 col-sm-6 form-outline mb-4">
                       <label class="form-label" for="pass_tera">Contraseña</label>
-                      <input type="text" id="pass_tera" name="pass_tera" placeholder="Correo electrónico" class="form-control input-custom" required/>
+                      <input type="text" id="pass_tera" name="pass_tera" placeholder="Contraseña" class="form-control input-custom" required/>
                   </div>
                 </div>
               </div>
               <div class="col-12 col-sm-4">
                 <h3 class="azul text-center mt-2">Agregar foto</h3>
                 <div class="profile-pic">
-                  <label class="-label" for="file">
+                  <label class="-label" for="foto_tera">
                     <span class="fa fa-plus"></span>
                   </label>
-                  <input id="file" accept="image/*" capture="camera" type="file" name="foto_tera" onchange="loadFile(event)" required/>
+                  <input id="foto_tera" accept="image/*" capture="camera" type="file" name="foto_tera" onchange="loadFile(event)" required/>
                   <img src="views/img/fonto_usuario.png" id="output" width="200" />
                 </div>
               </div>
@@ -163,7 +132,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary-custom"><i class="fa fa-plus"></i> Agregar</button>
+          <button type="submit" onclick="checkImgPerfil();" class="btn btn-primary-custom"><i class="fa fa-plus"></i> Agregar</button>
         </div>
       </form>
     </div>
