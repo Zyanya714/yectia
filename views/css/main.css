@@ -77,6 +77,14 @@ body{
     background-color: var(--acento);
     color: white!important;
   }
+  .fondo-categoria{
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 6px 0px 0px 6px;
+    min-height: 15vh;
+  }
   .fondo-foto-terapeuta{
     background-color: #cccccc;
     background-position: center;

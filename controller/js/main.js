@@ -122,10 +122,30 @@ function tituloActivo(x){
   var active="border-bottom: 4px solid var(--complementario);";
   for (let i = 1; i < 6; i++) {
     th_i=document.getElementById("th-ejercicios_"+i);
+    row_i=document.getElementById("row-categoria-ejercicio-"+i);
     th_i.style="";
+    row_i.style="display:none";
   }
   th=document.getElementById("th-ejercicios_"+x);
+  row_i=document.getElementById("row-categoria-ejercicio-"+x);
   th.style=active;
+  row_i.style="";
+}
+function subTituloActivo(x,y){
+  y.forEach(element => {
+    row_y=document.getElementById("row-ejercicio-"+element);
+    row_y.style="display:none";
+  });
+  if (x!=0) {
+    for (let i = 1; i < 6; i++) {
+      th_i=document.getElementById("th-ejercicios_"+i);
+      row_i=document.getElementById("row-categoria-ejercicio-"+i);
+      th_i.style="";
+      row_i.style="display:none";
+    }
+    row_x=document.getElementById("row-ejercicio-"+x);
+    row_x.style="";
+  }
 }
 $(document).ready(function(){
   $('form').on('blur', 'input, textarea', function() {
