@@ -156,19 +156,31 @@
                       <div class="col-12"><h3><?php echo($nombre_dependencia); ?></h3></div>
                       <?php
                       if($nrows>0){
-                        $var=mysqli_fetch_array($res);
-                        $tipo_adj=$var['tipo_adj'];
-                        ?>
-                          <div class="col-12 col-sm-3" style="cursor: pointer;">
-                            <div class="card h-100 text-center">
-                              <div class="card-img-top fondo-categoria"><i class="fa fa-2x <?php if($tipo_adj=='Video'){echo('fa-play-circle');}elseif($tipo_adj=='Infografia'){echo('fa-file-alt');}elseif($tipo_adj=='Podcast'){echo('fa-microphone-alt');}else{echo('fa-question-circle');} ?> mt-5"></i></div>
-                              <div class="card-body">
-                                <h5 class="card-title"><?php echo($var['nombre_adj']); ?></h5>
-                                <!-- <p class="card-text"><small><?php echo($var['descr_adj']); ?></small></p> -->
+                        while($var=mysqli_fetch_array($res)){
+                          $tipo_adj=$var['tipo_adj'];
+                          ?>
+                            <div class="col-12 col-sm-3" style="cursor: pointer;">
+                              <div class="card h-100 text-center">
+                              <?php 
+                              if($tipo_adj=='Video'){
+                                $url_adj=$var['url_adj'];
+                                $vid=explode('=',$url_adj);
+                                $preview="<img src='https://img.youtube.com/vi/".$vid[1]."/0.jpg' class='card-img-top fondo-categoria' alt=''>";
+                                }elseif($tipo_adj=='Infografia'){
+                                  $preview="<div class='card-img-top fondo-categoria'><i class='fa fa-2x fa-file-alt mt-5'></i></div>";
+                                }elseif($tipo_adj=='Podcast'){
+                                  $preview="<div class='card-img-top fondo-categoria'><i class='fa fa-2x fa-microphone-alt mt-5'></i></div>";
+                                }else{$preview="<div class='card-img-top fondo-categoria'><i class='fa fa-2x fa-question-circle mt-5'></i></div>";}
+                                ?>
+                                <?php echo($preview); ?>
+                                <div class="card-body">
+                                  <h5 class="card-title"><?php echo($var['nombre_adj']); ?></h5>
+                                  <!-- <p class="card-text"><small><?php echo($var['descr_adj']); ?></small></p> -->
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        <?php
+                          <?php 
+                        }
                       }else{
                         ?>
                         <div class='col-12 col-sm-6 show px-2 py-3'><h4 class="text-muted">Sin dato</h4></div>
@@ -180,6 +192,13 @@
                     }
                     ?>
                 </div>
+                <div class="container">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#modalAgregarEjercicio">
+                      <i class="fa fa-plus"></i> Agregar
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -187,4 +206,122 @@
       </div>
     </div>
   </div>
+  <!-- Modal Agregar -->
+<div class="modal fade" id="modalAgregarEjercicio" tabindex="-1" aria-labelledby="modalAgregarEjercicioLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title titulo-seccion fs-5" id="modalAgregarEjercicioLabel">Nuevo ejercicio</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="POST" action="controller/crud/ingresaAdjunto.php" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-sm-12 form-outline mb-4">
+                  <label class="form-label" for="nombre_doc">Nombre de documento</label>
+                  <input type="text" id="nombre_doc" name="nombre_doc" placeholder="Nombre" class="form-control input-custom" required/>
+              </div>
+              <div class="col-12 col-sm-4 form-outline mb-4">
+                  <label class="form-label" for="tipo_doc">Tipo documento</label>
+                  <select class="form-select input-custom" id="tipo_doc" name="tipo_doc" required>
+                    <option hidden value="">Tipo</option>
+                    <option>Video</option>
+                    <option>Podcast</option>
+                    <option>Infografia</option>
+                    <option>Otro</option>
+                  </select>
+              </div>
+              <div class="col-12 col-sm-8 form-outline mb-4">
+                  <label class="form-label" for="url_doc">URL</label>
+                  <input type="text" id="url_doc" name="url_doc" placeholder="URL" class="form-control input-custom" required/>
+              </div>
+              <div class="col-12 col-sm-4 form-outline mb-4">
+                  <label class="form-label" for="categoria_doc">Categoría</label>
+                  <select class="form-select input-custom" id="categoria_doc" name="categoria_doc" required>
+                    <option hidden value="">Categoría</option>
+                    <?php
+                    $sql="SELECT categoria_dependencia FROM dependencias GROUP BY categoria_dependencia";
+                    $res=mysqli_query($conexion,$sql);
+                    while($var=mysqli_fetch_array($res)){
+                      echo("<option value='".$var['categoria_dependencia']."'>".$var['categoria_dependencia']."</option>");
+                    }
+                    ?>
+                  </select>
+              </div>
+              <div class="col-12 col-sm-7 form-outline mb-4">
+                  <label class="form-label" for="dependencia_doc">Sección</label>
+                  <select class="form-select input-custom" id="dependencia_doc" name="dependencia_doc" required>
+                    <option hidden value="">Selecciona la categoria</option>
+                  </select>
+              </div>
+              <div class="col-12 col-sm-1 form-outline mb-4">
+                  <label class="form-label" for="dependencia_doc">Agregar</label>
+                  <button type="button" class="form-control btn btn-primary-custom" data-bs-target="#modalAgregarCategoria" data-bs-toggle="modal"><i class="fa fa-plus-square"></i></button>
+              </div>
+              <div class="col-12 col-sm-12 form-outline mb-4">
+                  <label class="form-label" for="desc_doc">Descripción</label>
+                  <input type="text" id="desc_doc" name="desc_doc" placeholder="Descripción" class="form-control input-custom" required/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" onclick="checkImgPerfilPas();" class="btn btn-primary-custom"><i class="fa fa-plus"></i> Agregar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal Agregar Categoría -->
+<div class="modal fade" id="modalAgregarCategoria" tabindex="-1" aria-labelledby="modalAgregarCategoriaLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title titulo-seccion fs-5" id="modalAgregarCategoriaLabel">Nuevo sección</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="POST" action="controller/crud/ingresaSeccion.php" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-sm-6 form-outline mb-4">
+                  <label class="form-label" for="categoria_dependencia">Nombre de categoría</label>
+                  <select class="form-select input-custom" id="categoria_doc" name="categoria_doc" required>
+                    <option hidden value="">Categoría</option>
+                    <?php
+                    $sql="SELECT categoria_dependencia FROM dependencias GROUP BY categoria_dependencia";
+                    $res=mysqli_query($conexion,$sql);
+                    while($var=mysqli_fetch_array($res)){
+                      echo("<option>".$var['categoria_dependencia']."</option>");
+                    }
+                    ?>
+                  </select>
+              </div>
+              <div class="col-12 col-sm-6 form-outline mb-4">
+                  <label class="form-label" for="nombre_dependencia">Nombre de sección</label>
+                  <input type="text" id="nombre_dependencia" name="nombre_dependencia" placeholder="Nombre" class="form-control input-custom" required/>
+              </div>
+              <div class="col-12 col-sm-12">
+                <h3 class="azul text-center mt-2">Agregar foto</h3>
+                <div class="profile-pic">
+                  <label class="-label" for="foto_categoria">
+                    <span class="fa fa-plus"></span>
+                  </label>
+                  <input id="foto_categoria" accept="image/*" capture="camera" type="file" name="foto_categoria" onchange="loadFile(event)" required/>
+                  <img src="views/img/fonto_usuario.png" id="output" width="200" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" href="#modalAgregarEjercicio" role="button">Cancelar</button>
+          <button type="submit" onclick="checkImgCategoria();" class="btn btn-primary-custom"><i class="fa fa-plus"></i> Agregar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
   <?php require_once("layout/footer.php"); ?>

@@ -109,6 +109,12 @@ function checkImgPerfilPas() {
     $("#foto_paciente").focus();
   }
 }
+function checkImgCategoria() {
+  if ($("#foto_categoria").val() == "") {
+    Swal.fire('Sin foto de categoría','','question');
+    $("#foto_categoria").focus();
+  }
+}
 function capitalizeWords(str,id) {
   var splitStr = str.toLowerCase().split(' ');
    for (var i = 0; i < splitStr.length; i++) {
@@ -156,4 +162,19 @@ $(document).ready(function(){
   $('#curp_paciente').keyup(function(){
     $(this).val($(this).val().toUpperCase());
   }).mask('SSSS000000SSSAAAAA');
+  $('#categoria_doc').on('change', function(){
+    var categoria = $(this).val();
+    if(categoria){
+        $.ajax({
+            type:'POST',
+            url:'controller/crud/ajaxDataCategoria.php',
+            data:'categoria='+categoria,
+            success:function(html){
+                $('#dependencia_doc').html(html);
+            }
+        }); 
+    }else{
+        $('#dependencia_doc').html('<option hidden value="">Selecciona la categoria</option>'); 
+    }
+});
 });
