@@ -21,7 +21,7 @@
         </li>
         <li class="nav-item">
         <a class="nav-link px-4 py-1" href="?mdl=<?php echo(base64_encode('ejercicios')); ?>">
-            <span class="nav-link-text <?php if($module=='ejercicios'){echo('titulo-seccion');}else{echo('azul');} ?>">Ejercicios</span>
+            <span class="nav-link-text <?php if($module=='ejercicios' || $module=='perfil_ejercicio'){echo('titulo-seccion');}else{echo('azul');} ?>">Ejercicios</span>
         </a>
         </li>
         <li class="nav-item">

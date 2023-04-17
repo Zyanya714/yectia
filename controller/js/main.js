@@ -153,6 +153,15 @@ function subTituloActivo(x,y){
     row_x.style="";
   }
 }
+function mostrarEjercicio(id,root) {
+  url="?mdl="+root+"&id="+id;
+  window.location.replace("index.php"+url)
+}
+function mostrarInfografia(url){
+  container = document.getElementById("containerInfografia");
+  url=atob(url);
+  container.innerHTML=url;
+}
 $(document).ready(function(){
   $('form').on('blur', 'input, textarea', function() {
     $(this).val((i, value) => value.trim());

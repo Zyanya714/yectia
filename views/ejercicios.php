@@ -158,8 +158,10 @@
                       if($nrows>0){
                         while($var=mysqli_fetch_array($res)){
                           $tipo_adj=$var['tipo_adj'];
+                          $id_adjunto=$var['id_adjunto'];
+                          $url=$id_adjunto.",'".base64_encode('perfil_ejercicio')."'";
                           ?>
-                            <div class="col-12 col-sm-3" style="cursor: pointer;">
+                            <div class="col-12 col-sm-3" style="cursor: pointer;" onclick="mostrarEjercicio(<?php echo($url); ?>);">
                               <div class="card h-100 text-center">
                               <?php 
                               if($tipo_adj=='Video'){

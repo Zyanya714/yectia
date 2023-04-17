@@ -10,7 +10,7 @@
           <div class="card-body p-3">
             <div class="container">
               <h3 class="px-4 mt-4 titulo-seccion">Tutorial</h3>
-              <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/29YDZUNKvBI2I64TvLj1Wt?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              
             </div>
           </div>
         </div>
