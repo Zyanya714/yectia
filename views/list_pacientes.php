@@ -70,18 +70,27 @@
                       while($var=mysqli_fetch_array($res)){
                       ?>
                         <div class="col-12 col-sm-6 show px-2 py-3">
-                          <a href="?mdl=<?php echo(base64_encode('perfil_paciente')); ?>&id=<?php echo(base64_encode($var['id_paciente'])); ?>" class="texto-card-paciente">
-                            <div class="fondo-card-paciente">
-                              <div class="row">
-                                <div class="col-2 fondo-foto-paciente" style="background-image: url(<?php echo($var['url_foto_p']); ?>);">  
+                          <div class="row">
+                            <div class="col-10">
+                              <a href="?mdl=<?php echo(base64_encode('perfil_paciente')); ?>&id=<?php echo(base64_encode($var['id_paciente'])); ?>" class="texto-card-paciente">
+                                <div class="fondo-card-paciente">
+                                  <div class="row">
+                                    <div class="col-2 fondo-foto-paciente" style="background-image: url(<?php echo($var['url_foto_p']); ?>);">  
+                                    </div>
+                                    <div class="col-10">
+                                        <p class="mt-2 mb-0"><?php echo($var['nombre']); ?></p>
+                                        <p class="mb-2"><small class="nombre-paciente"><?php echo($var['curp']); ?></small></p>
+                                    </div>
+                                  </div>
                                 </div>
-                                <div class="col-10">
-                                    <p class="mt-2 mb-0"><?php echo($var['nombre']); ?></p>
-                                    <p class="mb-2"><small class="nombre-paciente"><?php echo($var['curp']); ?></small></p>
-                                </div>
-                              </div>
+                              </a>
                             </div>
-                          </a>
+                            <div class="col-2 mt-2">
+                              <button class="btn btn-primary-custom btn_delete_pas" data-bs-id="<?php echo(base64_encode($var['id_paciente'])); ?>" data-bs-nm="<?php echo(base64_encode($var['nombre'])); ?>" data-bs-tu="<?php echo(base64_encode($var['tipo_usuario'])); ?>">
+                                <i class="fa fa-trash"></i>
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       <?php
                       }

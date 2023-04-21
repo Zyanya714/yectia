@@ -1,5 +1,14 @@
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<?php
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+  <?php
 include('../config.php');
 include('../conexion.php');
 $nombre_paciente=mysqli_real_escape_string($conexion,$_POST['nombre_paciente']);
@@ -28,9 +37,13 @@ $sql="INSERT INTO `pacientes`(`idUsuario`, `fecha_nac`, `curp`, `diagnostico`, `
 $res2=mysqli_query($conexion,$sql);
 if($res1 == TRUE && $res2 == TRUE && $subirarchivo == TRUE) {
     mysqli_query($conexion,"COMMIT");
-    echo("<script type='text/javascript'> Swal.fire({icon: 'success',title: 'Paciente [$nombre_paciente] agregado correctamente',showCancelButton: false,confirmButtonText: `Aceptar`,}).then((result) => {if (result.isConfirmed){document.location.href='../../index.php?mdl=".base64_encode('list_pacientes')."';}}) </script>");
+    ?>
+    <script language='javascript'> Swal.fire({icon: 'success',title: 'Paciente [<?php echo($nombre_paciente); ?>] agregado correctamente',showCancelButton: false,confirmButtonText: `Aceptar`,}).then((result) => {document.location.href='../../index.php?mdl=<?php echo(base64_encode('list_pacientes')); ?>';}); </script>
+    <?php
 }else{
     mysqli_query($conexion,"ROLLBACK");
     echo "<script language='javascript'>alert('Error ".$conexion->error."');document.location.href='../../index.php?mdl=".base64_encode('list_pacientes')."'</script>";
 }
 ?>
+  </body>
+</html>
