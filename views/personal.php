@@ -43,7 +43,7 @@
                                 </a>
                               </div>
                               <div class="col-2 mt-2" <?php echo($display_delete); ?>>
-                                <button class="btn btn-primary-custom btn_delete_pas" data-bs-id="<?php echo(base64_encode($var['id_paciente'])); ?>" data-bs-nm="<?php echo(base64_encode($var['nombre'])); ?>" data-bs-tu="<?php echo(base64_encode($var['tipo_usuario'])); ?>">
+                                <button class="btn btn-primary-custom btn_delete_pas" data-bs-id="<?php echo(base64_encode($var['id_terapeuta'])); ?>" data-bs-nm="<?php echo(base64_encode($var['nombre'])); ?>" data-bs-tu="<?php echo(base64_encode($var['tipo_usuario'])); ?>">
                                   <i class="fa fa-trash"></i>
                                 </button>
                               </div>

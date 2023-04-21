@@ -185,5 +185,33 @@ $(document).ready(function(){
     }else{
         $('#dependencia_doc').html('<option hidden value="">Selecciona la categoria</option>'); 
     }
-});
+  });
+  $('.btn_delete_pas').on('click',function(){
+    var id=atob($(this).data('bs-id'));
+    nm=atob($(this).data('bs-nm'));
+    tu=atob($(this).data('bs-tu'));
+    Swal.fire({
+      title: '¿Deseas eliminar a?',
+      text:'"'+nm+'"',
+      icon:'question',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          type:'POST',
+          url:'controller/crud/ajaxDeleteUser.php',
+          data:'id='+id+'&tu='+tu,
+          success:function(response){
+              if (response=="success") {
+                Swal.fire('Usuario eliminado','','success').then((result) =>{window.location.reload()});
+              }else{
+                Swal.fire('Error',response,'warning');
+              }
+          }
+        });
+      }
+    });   
+  });
 });
