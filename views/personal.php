@@ -27,18 +27,27 @@
                         while($var=mysqli_fetch_array($res)){
                         ?>
                           <div class="col-12 col-sm-6 show px-2 py-3">
-                            <a href="?mdl=<?php echo(base64_encode('perfil_personal')); ?>&id=<?php echo(base64_encode($var['id_terapeuta'])); ?>" class="texto-card-terapeuta">
-                              <div class="fondo-card-terapeuta">
-                                <div class="row">
-                                  <div class="col-2 fondo-foto-terapeuta" style="background-image: url(<?php echo($var['url_foto']); ?>);">  
+                            <div class="row">
+                              <div class="col-10">
+                                <a href="?mdl=<?php echo(base64_encode('perfil_personal')); ?>&id=<?php echo(base64_encode($var['id_terapeuta'])); ?>" class="texto-card-terapeuta">
+                                  <div class="fondo-card-terapeuta">
+                                    <div class="row">
+                                      <div class="col-2 fondo-foto-terapeuta" style="background-image: url(<?php echo($var['url_foto']); ?>);">  
+                                      </div>
+                                      <div class="col-10">
+                                          <p class="mt-2 mb-0"><?php echo($var['nombre']); ?> <?php $display_delete=""; if($var['tipo_usuario']=="1"){$display_delete="style='display:none'";echo("<span class='badge text-bg-warning'>Admin</span>");} ?></p>
+                                          <p class="mb-2"><small class="nombre-terapeuta"><?php echo($var['area']); ?></small></p>
+                                      </div>
+                                    </div>
                                   </div>
-                                  <div class="col-10">
-                                      <p class="mt-2 mb-0"><?php echo($var['nombre']); ?></p>
-                                      <p class="mb-2"><small class="nombre-terapeuta"><?php echo($var['area']); ?></small></p>
-                                  </div>
-                                </div>
+                                </a>
                               </div>
-                            </a>
+                              <div class="col-2 mt-2" <?php echo($display_delete); ?>>
+                                <button class="btn btn-primary-custom btn_delete_pas" data-bs-id="<?php echo(base64_encode($var['id_terapeuta'])); ?>" data-bs-nm="<?php echo(base64_encode($var['nombre'])); ?>" data-bs-tu="<?php echo(base64_encode($var['tipo_usuario'])); ?>">
+                                  <i class="fa fa-trash"></i>
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         <?php
                         }

@@ -109,6 +109,12 @@ function checkImgPerfilPas() {
     $("#foto_paciente").focus();
   }
 }
+function checkImgCategoria() {
+  if ($("#foto_categoria").val() == "") {
+    Swal.fire('Sin foto de categoría','','question');
+    $("#foto_categoria").focus();
+  }
+}
 function capitalizeWords(str,id) {
   var splitStr = str.toLowerCase().split(' ');
    for (var i = 0; i < splitStr.length; i++) {
@@ -122,10 +128,39 @@ function tituloActivo(x){
   var active="border-bottom: 4px solid var(--complementario);";
   for (let i = 1; i < 6; i++) {
     th_i=document.getElementById("th-ejercicios_"+i);
+    row_i=document.getElementById("row-categoria-ejercicio-"+i);
     th_i.style="";
+    row_i.style="display:none";
   }
   th=document.getElementById("th-ejercicios_"+x);
+  row_i=document.getElementById("row-categoria-ejercicio-"+x);
   th.style=active;
+  row_i.style="";
+}
+function subTituloActivo(x,y){
+  y.forEach(element => {
+    row_y=document.getElementById("row-ejercicio-"+element);
+    row_y.style="display:none";
+  });
+  if (x!=0) {
+    for (let i = 1; i < 6; i++) {
+      th_i=document.getElementById("th-ejercicios_"+i);
+      row_i=document.getElementById("row-categoria-ejercicio-"+i);
+      th_i.style="";
+      row_i.style="display:none";
+    }
+    row_x=document.getElementById("row-ejercicio-"+x);
+    row_x.style="";
+  }
+}
+function mostrarEjercicio(id,root) {
+  url="?mdl="+root+"&id="+id;
+  window.location.replace("index.php"+url)
+}
+function mostrarInfografia(url){
+  container = document.getElementById("containerInfografia");
+  url=atob(url);
+  container.innerHTML=url;
 }
 $(document).ready(function(){
   $('form').on('blur', 'input, textarea', function() {
@@ -136,4 +171,47 @@ $(document).ready(function(){
   $('#curp_paciente').keyup(function(){
     $(this).val($(this).val().toUpperCase());
   }).mask('SSSS000000SSSAAAAA');
+  $('#categoria_doc').on('change', function(){
+    var categoria = $(this).val();
+    if(categoria){
+        $.ajax({
+            type:'POST',
+            url:'controller/crud/ajaxDataCategoria.php',
+            data:'categoria='+categoria,
+            success:function(html){
+                $('#dependencia_doc').html(html);
+            }
+        }); 
+    }else{
+        $('#dependencia_doc').html('<option hidden value="">Selecciona la categoria</option>'); 
+    }
+  });
+  $('.btn_delete_pas').on('click',function(){
+    var id=atob($(this).data('bs-id'));
+    nm=atob($(this).data('bs-nm'));
+    tu=atob($(this).data('bs-tu'));
+    Swal.fire({
+      title: '¿Deseas eliminar a?',
+      text:'"'+nm+'"',
+      icon:'question',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          type:'POST',
+          url:'controller/crud/ajaxDeleteUser.php',
+          data:'id='+id+'&tu='+tu,
+          success:function(response){
+              if (response=="success") {
+                Swal.fire('Usuario eliminado','','success').then((result) =>{window.location.reload()});
+              }else{
+                Swal.fire('Error',response,'warning');
+              }
+          }
+        });
+      }
+    });   
+  });
 });
