@@ -186,6 +186,27 @@ $(document).ready(function(){
         $('#dependencia_doc').html('<option hidden value="">Selecciona la categoria</option>'); 
     }
   });
+
+
+
+  $('#dependencia_doc').on('change', function(){
+    var categoria = $(this).val();
+    if(categoria){
+        $.ajax({
+            type:'POST',
+            url:'controller/crud/ajaxDataAdjunto.php',
+            data:'categoria='+categoria,
+            success:function(html){
+                $('#adj_view').html(html);
+            }
+        }); 
+    }else{
+        $('#adj_view').html('<h3>Selecciona una categoria y sección</h3>'); 
+    }
+  });
+
+
+
   $('.btn_delete_pas').on('click',function(){
     var id=atob($(this).data('bs-id'));
     nm=atob($(this).data('bs-nm'));

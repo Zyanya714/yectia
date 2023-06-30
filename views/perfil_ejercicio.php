@@ -11,7 +11,7 @@
               <div class="container px-4">
                 <div class="row mt-4">
                   <div class="col-12 col-sm-8">
-                    <h3 class="titulo-seccion">Paciente</h3>
+                    <h3 class="titulo-seccion">Material</h3>
                   </div>
                 </div>
                 <?php

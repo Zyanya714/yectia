@@ -22,7 +22,7 @@
                     <?php
                     include('controller/conexion.php');
                     $sql="SELECT * FROM ejercicios INNER JOIN terapeutas ON ejercicios.id_terapeuta=terapeutas.id_terapeuta INNER JOIN pacientes ON ejercicios.id_paciente=pacientes.id_paciente 
-                    INNER JOIN usuarios ON usuarios.idUsuario=pacientes.idUsuario WHERE terapeutas.idUsuario='$_SESSION[id]'";
+                    INNER JOIN usuarios ON usuarios.idUsuario=pacientes.idUsuario WHERE terapeutas.idUsuario='$_SESSION[id]' GROUP BY ejercicios.id_paciente";
                     $res=mysqli_query($conexion,$sql);
                     if($res==TRUE){
                       while($var=mysqli_fetch_array($res)){

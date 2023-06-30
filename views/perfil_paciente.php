@@ -13,6 +13,11 @@
                   <div class="col-12 col-sm-8">
                     <h3 class="titulo-seccion">Paciente</h3>
                   </div>
+                  <div class="col-12 col-sm-4 text-end">
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-lg btn-primary-custom" data-bs-target="#modalAsignarEjercicio" data-bs-toggle="modal"><i class="fa fa-plus-square"></i> Asignar material</button>
+                    </div>
+                  </div>
                 </div>
                 <?php
                 include('controller/conexion.php');
@@ -48,6 +53,7 @@
                                   <th scope="col">Nombre ejercicio</th>
                                   <th scope="col">Tipo ejercicio</th>
                                   <th scope="col">Fecha asignación</th>
+                                  <th scope="col">Desasignar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,11 +66,19 @@
                                   while($var=mysqli_fetch_array($res)){
                                     ?>
                                         <tr>
-                                        <td><?php echo($var['id_ejercicio']); ?></td>
-                                        <td><?php echo($var['nombre']); ?></td>
-                                        <td><?php echo($var['nombre_adj']); ?></td>
-                                        <td><?php echo($var['tipo_adj']); ?></td>
-                                        <td><?php $date=new DateTime($var['date']); echo($date->format('Y/m/d - h:m a')); ?></td>
+                                          <td><?php echo($var['id_ejercicio']); ?></td>
+                                          <td><?php echo($var['nombre']); ?></td>
+                                          <td><?php echo($var['nombre_adj']); ?></td>
+                                          <td><?php echo($var['tipo_adj']); ?></td>
+                                          <td><?php $date=new DateTime($var['date']); echo($date->format('Y/m/d - h:m a')); ?></td>
+                                          <td>
+                                            <?php
+                                            //Cambiar id o condición para super usuario
+                                            if ($_SESSION['id']=="1" || $_SESSION['id']==$var['id_terapeuta']) {
+                                              ?><a href="controller/crud/deleteUserAdjunto?id='<?php echo(base64_encode($var['id_ejercicio'])); ?>'" class="btn btn-danger"><i class="fa fa-eraser"></i></a><?php
+                                            }else{echo("-");}
+                                            ?>
+                                          </td>
                                         </tr>
                                     <?php
                                   }
@@ -84,4 +98,51 @@
       </div>
     </div>
   </div>
+  <!-- Modal Agregar -->
+<div class="modal fade" id="modalAsignarEjercicio" tabindex="-1" aria-labelledby="modalAsignarEjercicioLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title titulo-seccion fs-5" id="modalAsignarEjercicioLabel">Nuevo ejercicio</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="POST" action="controller/crud/asignarAdjunto.php" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <input name="id_paciente" type="hidden" value="<?php echo($id); ?>" style="display:none;">
+              <input name="id_terapeuta" type="hidden" value="<?php echo($_SESSION['id']); ?>" style="display:none;">
+              <div class="col-12 col-sm-6 form-outline mb-4">
+                  <label class="form-label" for="categoria_doc">Categoría</label>
+                  <select class="form-select input-custom" id="categoria_doc" name="categoria_doc" required>
+                    <option hidden value="">Categoría</option>
+                    <?php
+                    $sql="SELECT categoria_dependencia FROM dependencias GROUP BY categoria_dependencia";
+                    $res=mysqli_query($conexion,$sql);
+                    while($var=mysqli_fetch_array($res)){
+                      echo("<option value='".$var['categoria_dependencia']."'>".$var['categoria_dependencia']."</option>");
+                    }
+                    ?>
+                  </select>
+              </div>
+              <div class="col-12 col-sm-6 form-outline mb-4">
+                  <label class="form-label" for="dependencia_doc">Sección</label>
+                  <select class="form-select input-custom" id="dependencia_doc" name="dependencia_doc" required>
+                    <option hidden value="">Selecciona la categoria</option>
+                  </select>
+              </div>
+              <div class="col-12" id="adj_view">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary-custom"><i class="fa fa-plus"></i> Agregar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
   <?php require_once("layout/footer.php"); ?>
