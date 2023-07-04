@@ -28,7 +28,7 @@ if(!empty($_POST["categoria"])){
                 <td><?php echo($var['tipo_adj']); ?></td>
                 <td><?php echo($var['descr_adj']); ?></td>
                 <td><?php echo($var['url_adj']); ?></td>
-                <td><button type="button" class="btn btn-primary"><i class="fa fa-external-link-alt"></i></button></td>
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMostrarAdjunto" data-bs-titulo="<?php echo(base64_encode($var['nombre_adj'])); ?>" data-bs-content="<?php echo(base64_encode($var['url_adj'])); ?>"><i class="fa fa-external-link-alt"></i></button></td>
             </tr>
             <?php
           }

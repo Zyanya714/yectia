@@ -47,13 +47,15 @@
                     <div class="table-responsive">
                         <table class="table table-borderless table-striped table-hover bg-table-custom">
                             <thead class="bg-main text-white">
-                                <tr>
+                                <tr class="align-middle">
                                   <th scope="col">#</th>
                                   <th scope="col">Terapeuta</th>
                                   <th scope="col">Nombre ejercicio</th>
                                   <th scope="col">Tipo ejercicio</th>
                                   <th scope="col">Fecha asignación</th>
+                                  <th scope="col">Ultima Visualización</th>
                                   <th scope="col">Desasignar</th>
+                                  <th scope="col">Ver</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,15 +72,17 @@
                                           <td><?php echo($var['nombre']); ?></td>
                                           <td><?php echo($var['nombre_adj']); ?></td>
                                           <td><?php echo($var['tipo_adj']); ?></td>
-                                          <td><?php $date=new DateTime($var['date']); echo($date->format('Y/m/d - h:m a')); ?></td>
-                                          <td>
+                                          <td class="text-center"><?php $date=new DateTime($var['date']); echo($date->format('Y/m/d - h:m a')); ?></td>
+                                          <td class="text-center"><?php if($var['visto_adj']=="1"){$date=new DateTime($var['date_view']); echo($date->format('Y/m/d - h:m a'));}else{echo("Sin visualización");} ?></td>
+                                          <td class="text-center">
                                             <?php
                                             //Cambiar id o condición para super usuario
                                             if ($_SESSION['id']=="1" || $_SESSION['id']==$var['id_terapeuta']) {
-                                              ?><a href="controller/crud/deleteUserAdjunto?id='<?php echo(base64_encode($var['id_ejercicio'])); ?>'" class="btn btn-danger"><i class="fa fa-eraser"></i></a><?php
+                                              ?><button onclick="deleteUserSpot('<?php echo(base64_encode($var['id_ejercicio'])); ?>')" class="btn btn-danger"><i class="fa fa-eraser"></i></button><?php
                                             }else{echo("-");}
                                             ?>
                                           </td>
+                                          <td class="text-center"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMostrarAdjuntoCompleto" data-bs-titulo="<?php echo(base64_encode($var['nombre_adj'])); ?>" data-bs-content="<?php echo(base64_encode($var['url_adj'])); ?>" data-bs-desc="<?php echo(base64_encode($var['descr_adj'])); ?>"><i class="fa fa-external-link-alt"></i></button></td>
                                         </tr>
                                     <?php
                                   }
@@ -142,6 +146,51 @@
           <button type="submit" class="btn btn-primary-custom"><i class="fa fa-plus"></i> Agregar</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalMostrarAdjunto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalMostrarAdjuntoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title titulo-seccion fs-5" id="modalMostrarAdjuntoLabel"></h1>
+        <button type="button" class="btn-close" data-bs-target="#modalAsignarEjercicio" data-bs-toggle="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="ratio ratio-16x9">
+              <iframe id="iframeModaAdjunto" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-target="#modalAsignarEjercicio" data-bs-toggle="modal">Regresar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalMostrarAdjuntoCompleto" tabindex="-1" aria-labelledby="modalMostrarAdjuntoCompletoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title titulo-seccion fs-5" id="modalMostrarAdjuntoCompletoLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="ratio ratio-16x9">
+              <iframe id="iframeModaAdjuntoCompleto" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <h5 class="mt-4"><strong><small id="modalAdjuntoComletoDesc"></small></strong></h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
     </div>
   </div>
 </div>
