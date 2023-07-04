@@ -67,23 +67,23 @@
                                 if($n_var>0){
                                   while($var=mysqli_fetch_array($res)){
                                     ?>
-                                        <tr>
-                                          <td><?php echo($var['id_ejercicio']); ?></td>
-                                          <td><?php echo($var['nombre']); ?></td>
-                                          <td><?php echo($var['nombre_adj']); ?></td>
-                                          <td><?php echo($var['tipo_adj']); ?></td>
-                                          <td class="text-center"><?php $date=new DateTime($var['date']); echo($date->format('Y/m/d - h:m a')); ?></td>
-                                          <td class="text-center"><?php if($var['visto_adj']=="1"){$date=new DateTime($var['date_view']); echo($date->format('Y/m/d - h:m a'));}else{echo("Sin visualización");} ?></td>
-                                          <td class="text-center">
-                                            <?php
-                                            //Cambiar id o condición para super usuario
-                                            if ($_SESSION['id']=="1" || $_SESSION['id']==$var['id_terapeuta']) {
-                                              ?><button onclick="deleteUserSpot('<?php echo(base64_encode($var['id_ejercicio'])); ?>')" class="btn btn-danger"><i class="fa fa-eraser"></i></button><?php
-                                            }else{echo("-");}
-                                            ?>
-                                          </td>
-                                          <td class="text-center"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMostrarAdjuntoCompleto" data-bs-titulo="<?php echo(base64_encode($var['nombre_adj'])); ?>" data-bs-content="<?php echo(base64_encode($var['url_adj'])); ?>" data-bs-desc="<?php echo(base64_encode($var['descr_adj'])); ?>"><i class="fa fa-external-link-alt"></i></button></td>
-                                        </tr>
+                                      <tr>
+                                        <td><?php echo($var['id_ejercicio']); ?></td>
+                                        <td><?php echo($var['nombre']); ?></td>
+                                        <td><?php echo($var['nombre_adj']); ?></td>
+                                        <td><?php echo($var['tipo_adj']); ?></td>
+                                        <td class="text-center"><?php $date=new DateTime($var['date']); echo($date->format('Y/m/d - h:m a')); ?></td>
+                                        <td class="text-center"><?php if($var['visto_adj']=="1"){$date=new DateTime($var['date_view']); echo($date->format('Y/m/d - h:m a'));}else{echo("Sin visualización");} ?></td>
+                                        <td class="text-center">
+                                          <?php
+                                          //Cambiar id o condición para super usuario
+                                          if ($_SESSION['id']=="1" || $_SESSION['id']==$var['id_terapeuta']) {
+                                            ?><button onclick="deleteUserSpot('<?php echo(base64_encode($var['id_ejercicio'])); ?>')" class="btn btn-danger"><i class="fa fa-eraser"></i></button><?php
+                                          }else{echo("-");}
+                                          ?>
+                                        </td>
+                                        <td class="text-center"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMostrarAdjuntoCompleto" data-bs-titulo="<?php echo(base64_encode($var['nombre_adj'])); ?>" data-bs-content="<?php if($var['tipo_adj']=="Video"){$id_url=explode('=',$var['url_adj']);echo(base64_encode("https://www.youtube.com/embed/".$id_url[1]));}else{echo(base64_encode($var['url_adj']));} ?>" data-bs-desc="<?php echo(base64_encode($var['descr_adj'])); ?>"><i class="fa fa-external-link-alt"></i></button></td>
+                                      </tr>
                                     <?php
                                   }
                                 }else{
