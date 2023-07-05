@@ -10,6 +10,7 @@
   <body>
   <?php
 include('../config.php');
+include("../session_ck.php");
 include('../conexion.php');
 $nombre_paciente=mysqli_real_escape_string($conexion,$_POST['nombre_paciente']);
 $fnac_paciente=mysqli_real_escape_string($conexion,$_POST['fnac_paciente']);

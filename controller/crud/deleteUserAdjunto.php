@@ -10,6 +10,7 @@
   <body>
 <?php
 include('../config.php');
+include("../session_ck.php");
 include('../conexion.php');
 if(!empty($_GET["id"])){
     $id=base64_decode($_GET["id"]);

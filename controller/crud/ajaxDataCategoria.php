@@ -1,5 +1,6 @@
 <?php
 include('../config.php');
+include("../session_ck.php");
 include('../conexion.php');
 if(!empty($_POST["categoria"])){
     $query = "SELECT id_dependencia,nombre_dependencia FROM dependencias WHERE categoria_dependencia = '".$_POST['categoria']."' ORDER BY categoria_dependencia ASC"; 

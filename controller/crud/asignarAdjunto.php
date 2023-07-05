@@ -10,6 +10,7 @@
   <body>
 <?php
 include('../config.php');
+include("../session_ck.php");
 include('../conexion.php');
 $id_adj=$_POST['id_adjunto'];
 $id_paciente=mysqli_real_escape_string($conexion,$_POST['id_paciente']);

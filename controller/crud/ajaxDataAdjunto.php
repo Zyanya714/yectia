@@ -1,5 +1,6 @@
 <?php
 include('../config.php');
+include("../session_ck.php");
 include('../conexion.php');
 if(!empty($_POST["categoria"])){
     $query = "SELECT * FROM `documentos` INNER JOIN dependencias ON documentos.id_dependencia=dependencias.id_dependencia WHERE documentos.id_dependencia= '".$_POST['categoria']."'"; 

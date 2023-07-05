@@ -10,6 +10,7 @@
   <body>
 <?php
 include('../config.php');
+include("../session_ck.php");
 include('../conexion.php');
 $nombre_tera=mysqli_real_escape_string($conexion,$_POST['nombre_tera']);
 $num_tera=mysqli_real_escape_string($conexion,$_POST['num_tera']);
