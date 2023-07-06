@@ -15,7 +15,6 @@ if(!empty($_POST["categoria"])){
             <th scope="col">Nombre</th>
             <th scope="col">Tipo</th>
             <th scope="col">Descripción</th>
-            <th scope="col">URL</th>
             <th scope="col">Ver</th>
           </tr>
         </thead>
@@ -28,7 +27,6 @@ if(!empty($_POST["categoria"])){
                 <td><?php echo($var['nombre_adj']); ?></td>
                 <td><?php echo($var['tipo_adj']); ?></td>
                 <td><?php echo($var['descr_adj']); ?></td>
-                <td><?php echo($var['url_adj']); ?></td>
                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMostrarAdjunto" data-bs-titulo="<?php echo(base64_encode($var['nombre_adj'])); ?>" data-bs-content="<?php if($var['tipo_adj']=="Video"){$id_url=explode('=',$var['url_adj']);echo(base64_encode("https://www.youtube.com/embed/".$id_url[1]));}else{echo(base64_encode($var['url_adj']));} ?>"><i class="fa fa-external-link-alt"></i></button></td>
             </tr>
             <?php

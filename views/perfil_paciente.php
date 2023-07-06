@@ -9,16 +9,6 @@
           <div class="card box-content">
             <div class="card-body p-3">
               <div class="container px-4">
-                <div class="row mt-4">
-                  <div class="col-12 col-sm-8">
-                    <h3 class="titulo-seccion">Paciente</h3>
-                  </div>
-                  <div class="col-12 col-sm-4 text-end">
-                    <div class="d-grid gap-2">
-                      <button class="btn btn-lg btn-primary-custom" data-bs-target="#modalAsignarEjercicio" data-bs-toggle="modal"><i class="fa fa-plus-square"></i> Asignar material</button>
-                    </div>
-                  </div>
-                </div>
                 <?php
                 include('controller/conexion.php');
                 $id=base64_decode($_GET['id']);
@@ -26,8 +16,9 @@
                 $res=mysqli_query($conexion,$sql);
                 $var=mysqli_fetch_array($res);
                 ?>
-                <div class="row mt-2">
-                    <div class="col-12 col-sm-8">
+                <div class="row mt-4">
+                    <div class="col-12 col-sm-9">
+                        <h3 class="mb-2 titulo-seccion">Paciente</h3>
                         <h3 class="mt-4"><strong><?php echo($var['nombre']); ?></strong></h3>
                         <h5 class="mt-4">Fecha de nacimiento: <strong><?php $date=new DateTime($var['fecha_nac']); echo($date->format('d/m/Y')); ?></strong></h5>
                         <h5 class="mt-4">CURP: <strong><?php echo($var['curp']); ?></strong></h5>
@@ -35,13 +26,18 @@
                         <h5 class="mt-4">Correo: <strong><?php echo($var['correo_p']); ?></strong></h5>
                         <h5 class="mt-4">Diagnostico: <strong><small><?php echo($var['diagnostico']); ?></small></strong></h5>
                     </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 col-sm-3">
                         <img src="<?php echo($var['url_foto_p']); ?>" class="img-thumbnail" alt="<?php echo($var['nombre']); ?>">
                     </div>
                 </div>
                 <div class="row mt-4">
-                  <div class="col-12 col-sm-12">
+                  <div class="col-12 col-sm-8">
                     <h4 class="titulo-seccion">Material asignado</h4>
+                  </div>
+                  <div class="col-12 col-sm-4 text-end">
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-lg btn-primary-custom" data-bs-target="#modalAsignarEjercicio" data-bs-toggle="modal"><i class="fa fa-plus-square"></i> Asignar material</button>
+                    </div>
                   </div>
                   <div class="col-12 col-sm-12">
                     <div class="table-responsive">
