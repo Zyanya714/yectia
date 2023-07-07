@@ -41,7 +41,7 @@
                   </div>
                   <div class="col-12 col-sm-12">
                     <div class="table-responsive">
-                        <table class="table table-borderless table-striped table-hover bg-table-custom">
+                        <table class="table table-hover bg-table-custom">
                             <thead class="bg-main text-white">
                                 <tr class="align-middle">
                                   <th scope="col">#</th>
@@ -64,7 +64,7 @@
                                   while($var=mysqli_fetch_array($res)){
                                     ?>
                                       <tr>
-                                        <td><?php echo($var['id_ejercicio']); ?></td>
+                                        <td class="bg-main text-white"><?php echo($var['id_ejercicio']); ?></td>
                                         <td><?php echo($var['nombre']); ?></td>
                                         <td><?php echo($var['nombre_adj']); ?></td>
                                         <td><?php echo($var['tipo_adj']); ?></td>

@@ -16,7 +16,7 @@ body{
     font-size: 16px;
   }
   .bg-main{
-    background-color: var(--complementario);
+    background-color: var(--complementario)!important;
   }
   .box-content{
     box-shadow: 0px 4px 30px rgba(170, 170, 170, 0.25);
@@ -205,8 +205,8 @@ body.offcanvas-active{
 .bg-table-custom{
   background-color: var(--acento2);
   border: 1px solid var(--fondoTabla);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 6px;
+  border-radius: 0.375rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .form-check-input{
   height: 2em!important;
