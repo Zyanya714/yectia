@@ -367,4 +367,7 @@ $(document).ready(function () {
       }
     });
   });
+  var left = document.getElementById('box-content-main').offsetHeight;
+  var right = document.getElementById('box-content').offsetHeight;
+  if(right>left){document.getElementById('box-content-main').style.height=""+right+"px"}
 });

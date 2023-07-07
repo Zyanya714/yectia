@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-10 col-12">
         <div class="container-fluid py-4">
-          <div class="card box-content">
+          <div id="box-content" class="card box-content">
             <div class="card-body p-3">
               <div class="container px-4">
                 <?php
