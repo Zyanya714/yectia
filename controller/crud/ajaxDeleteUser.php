@@ -1,5 +1,6 @@
 <?php
 include('../config.php');
+include("../session_ck.php");
 include('../conexion.php');
 if(!empty($_POST["id"])){
         $tipo_usuario=$_POST['tu'];

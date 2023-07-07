@@ -11,7 +11,7 @@
               <div class="container px-4">
                 <div class="row mt-4">
                   <div class="col-12 col-sm-8">
-                    <h3 class="titulo-seccion">Paciente</h3>
+                    <h3 class="titulo-seccion">Material</h3>
                   </div>
                 </div>
                 <?php
@@ -27,16 +27,12 @@
                         <div class="ratio ratio-16x9">
                             <?php $url=$var['url_adj'];$t_url=$var['tipo_adj'];
                             if($t_url=="Video"){
-                                $id_url=explode('=',$url);
-                                echo("<iframe src='https://www.youtube.com/embed/".$id_url[1]."' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>");
-                            }elseif($t_url=="Infografia"){
-                                ?>
-                                <a href="views/play.php?ctn=<?php echo(base64_encode($id)); ?>" class='btn btn-primary-custom' target="_blank">
-                                <h3><i class='fa fa-play' style="margin-top: 25%;"></i> Iniciar</h3></a>
-                                <?php
+                              $id_url=explode('=',$url);
+                              $src="https://www.youtube.com/embed/".$id_url[1];
                             }else{
-                                echo($url);
+                              $src=$url;
                             } 
+                            echo("<iframe src='$src' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>");
                             ?>
                          </div>
                         <h5 class="mt-4"><strong><small><?php echo($var['descr_adj']); ?></small></strong></h5>

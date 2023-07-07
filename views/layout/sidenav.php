@@ -1,5 +1,5 @@
 <nav id="navbar_main" class="mobile-offcanvas py-4">
-    <div class="box-content box-content-main">
+    <div id="box-content-main" class="box-content box-content-main">
     <div class="offcanvas-header">  
         <button class="btn-close float-end"></button>
     </div>

@@ -10,6 +10,7 @@
   <body>
 <?php
 include('../config.php');
+include("../session_ck.php");
 include('../conexion.php');
 $categoria_doc=mysqli_real_escape_string($conexion,$_POST['categoria_doc']);
 $nombre_dependencia=mysqli_real_escape_string($conexion,$_POST['nombre_dependencia']);
